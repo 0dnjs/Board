@@ -7,6 +7,8 @@ import com.korit.board.aop.annotation.TimeAop;
 import com.korit.board.aop.annotation.ValidAop;
 import com.korit.board.dto.SignupReqDto;
 import com.korit.board.exception.ValidException;
+import com.korit.board.service.AuthService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,19 +21,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 public class AuthController {
 
-    @ReturnAop
+    private final AuthService authService;
+
     @ArgsAop
     @TimeAop
-    @ValidAop
-    @CrossOrigin
+    @Valid // 유효성 검사
     @PostMapping("/auth/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody SignupReqDto signupReqDto, BindingResult bindingResult) {
-    // 매개변수가 있어야 arg로 받을수있음
 
-        System.out.println("AuthController!!!");
-
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok().body(authService.signup(signupReqDto));
     }
+
 }
