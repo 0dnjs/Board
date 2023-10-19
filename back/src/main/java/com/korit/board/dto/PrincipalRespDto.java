@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class PrincipalRespDto {
+public class PrincipalRespDto { // 응답으로 패스워드를 줄거라서 패스워드는 설정안함
     private int userId;
     private String email;
     private String name;

@@ -3,6 +3,7 @@ package com.korit.board.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.korit.board.aop.annotation.ReturnAop;
 import com.korit.board.aop.annotation.TimeAop;
+import com.korit.board.exception.AuthMailException;
 import com.korit.board.exception.DuplicateException;
 import com.korit.board.exception.ValidException;
 import io.jsonwebtoken.JwtException;
@@ -70,6 +71,15 @@ public class ExceptionControllerAdvice {
 
         Map<String, String> message = new HashMap<>();
         message.put("jwt", "인증이 유효하지 않습니다.");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(message);
+
+    }
+    @ExceptionHandler(AuthMailException.class)
+    public ResponseEntity<?> mailException(AuthMailException mailException) {
+        System.out.println("예외처리됨!!!");
+
+        Map<String, String> message = new HashMap<>();
+        message.put("authMail", mailException.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(message);
 
     }

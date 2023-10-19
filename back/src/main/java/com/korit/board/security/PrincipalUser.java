@@ -49,5 +49,6 @@ public class PrincipalUser implements UserDetails { // 사용자 정보를 담�
     @Override
     public boolean isEnabled() {
         return user.getEnabled() > 0;
-    }
+    } // 매니저빌더쓰면 얘가 먼저 실행되어서 authenticationProvier로한거고
+    // 그걸하면 authenticate를 구현할수있음
 }

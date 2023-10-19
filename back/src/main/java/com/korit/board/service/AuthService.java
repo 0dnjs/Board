@@ -33,7 +33,8 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    public Boolean signup(SignupReqDto signupReqDto) {
+
+    public Boolean signup(SignupReqDto signupReqDto) { // 회원가입
         User user = signupReqDto.toUser(passwordEncoder);
 
         int errorCode = userMapper.checkDuplicate(user);
@@ -61,13 +62,12 @@ public class AuthService {
         throw new DuplicateException(errorMap);
 
     }
-
+                              // email,password 들어옴
     public String signin(SigninReqDto signinReqDto) {
-        UsernamePasswordAuthenticationToken authenticationToken = // upcasting 가능하다
+        UsernamePasswordAuthenticationToken authenticationToken = // upcasting해서 받아옴
                 new UsernamePasswordAuthenticationToken(signinReqDto.getEmail(), signinReqDto.getPassword());
 
-        // Authentication authentication = principalProvider.authenticate(authenticationToken);
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        Authentication authentication = principalProvider.authenticate(authenticationToken); // 여기서 email 미뤄진 예외터짐 유저네임낫파운드
 
         return jwtProvider.generateToken(authentication);
     }

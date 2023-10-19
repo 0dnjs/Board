@@ -29,10 +29,10 @@ public class SignupReqDto {
     @NotBlank
     private String nickname;
 
-    public User toUser(BCryptPasswordEncoder passwordEncoder) {
+    public User toUser(BCryptPasswordEncoder passwordEncoder) { // password 암호화 시켜줌
         return User.builder()
                 .email(email)
-                .password(passwordEncoder.encode(password))
+                .password(passwordEncoder.encode(password)) // 암호화되어있어서 encode안에 password감싸줘야함
                 .name(name)
                 .nickname(nickname)
                 .build();

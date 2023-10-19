@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll() // 위에 경로로 들어온 요청은 컨트롤러로 가는길을 막지 않겠다
                 .anyRequest() // 모든요청은
                 .authenticated() // 인증거쳐라
-                .and() // 그리고
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .and() // 그리고                                            // 여기서 예외터지면 principalentrypoint로 감
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 시큐리티컨텍스트홀더안에 어썬티케이션객체가 있냐없냐로 인증됐냐안됐냐체크함
                 .exceptionHandling()
                 .authenticationEntryPoint(principalEntryPoint);
     }
