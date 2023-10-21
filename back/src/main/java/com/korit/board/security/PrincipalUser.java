@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @Getter
+//          사용자의 정보와 권한을 저장
 public class PrincipalUser implements UserDetails { // 사용자 정보를 담는 인터페이스, 로그인
 
     private User user;

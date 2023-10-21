@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+//          사용자 세부 정보를 검색하는 서비스
 public class PrincipalUserDetailsService implements UserDetailsService { // 유저를 불러와 UserDetails로 반환한다
 
     private final UserMapper userMapper;

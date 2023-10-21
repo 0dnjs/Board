@@ -4,23 +4,38 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.korit.board.repository.UserMapper">
     <resultMap id="userMap" type="com.korit.board.entity.User">
-               <id property="userId" column="user_id" />
-               <result property="email" column="email" />
-               <result property="password" column="password" />
-               <result property="name" column="name" />
-               <result property="nickname" column="nickname" />
-               <result property="enabled" column="enabled" />
+       <id property="userId" column="user_id" />
+       <result property="email" column="email" />
+       <result property="password" column="password" />
+       <result property="name" column="name" />
+       <result property="nickname" column="nickname" />
+       <result property="enabled" column="enabled" />
+        <result property="profileUrl" column="profile_url" />
 
     </resultMap>
 
     <insert id="saveUser" parameterType="com.korit.board.entity.User">
-        insert into user_tb
+        insert into user_tb(user_id, email, password, name, nickname, enabled)
         values (0, #{email}, #{password}, #{name}, #{nickname}, 0)
     </insert>
     <update id="updateEnabledToEmail">
         update user_tb
         set
             enabled = 1
+        where
+            email = #{email}
+    </update>
+    <update id="updateProfileUrl" parameterType="com.korit.board.entity.User">
+        update user_tb
+        set
+            profile_url = #{profileUrl}
+        where
+            email = #{email}
+    </update>
+    <update id="updatePassword" parameterType="com.korit.board.entity.User">
+        update user_tb
+        set
+            password = #{password}
         where
             email = #{email}
     </update>
@@ -52,7 +67,8 @@
             password,
             nickname,
             name,
-            enabled
+            enabled,
+            profile_url
         from
             user_tb
         where

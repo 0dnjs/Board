@@ -20,6 +20,7 @@ public class User {
     private String name;
     private String nickname;
     private int enabled; // DB에 1/0으로 저장함 활성화되고 안되고 기본값 0
+    private String profileUrl;
 
     public PrincipalRespDto toPrincipalDto() {
 
@@ -29,6 +30,7 @@ public class User {
                 .name(name)
                 .nickname(nickname)
                 .enabled(enabled > 0)
+                .profileUrl(profileUrl)
                 .build();
     }
 }

@@ -14,12 +14,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+// 사용자의 인증 정보를 검증하고 Authentication(사용자의 인증 정보를 나타냄) 객체를 생성하는 제공자
 public class PrincipalProvider implements AuthenticationProvider {
 
     private final PrincipalUserDetailsService principalUserDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
+    //     사용자의 인증 정보를 나타냄
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         String email = authentication.getName();

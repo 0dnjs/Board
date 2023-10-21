@@ -11,4 +11,5 @@ public class PrincipalRespDto { // 응답으로 패스워드를 줄거라서 패
     private String name;
     private String nickname;
     private Boolean enabled;
+    private String profileUrl;
 }
