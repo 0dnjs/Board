@@ -21,6 +21,8 @@ public class User {
     private String nickname;
     private int enabled; // DB에 1/0으로 저장함 활성화되고 안되고 기본값 0
     private String profileUrl;
+    private String oauth2Id;
+    private String provider;
 
     public PrincipalRespDto toPrincipalDto() {
 
@@ -31,6 +33,8 @@ public class User {
                 .nickname(nickname)
                 .enabled(enabled > 0)
                 .profileUrl(profileUrl)
+                .oauth2Id(oauth2Id)
+                .provider(provider)
                 .build();
     }
 }

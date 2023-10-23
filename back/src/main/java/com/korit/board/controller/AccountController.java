@@ -50,7 +50,7 @@ public class AccountController {
     @ArgsAop
     @ValidAop
     @PutMapping("/account/password")
-    public ResponseEntity<?> updatePassword(@Valid @RequestBody UpdatePasswordReqDto updatePasswordReqDto, BindingResult bindingResult){
+    public ResponseEntity<?> updatePassword(@RequestBody UpdatePasswordReqDto updatePasswordReqDto){
 
         return ResponseEntity.ok(accountService.updatePassword(updatePasswordReqDto));
     }

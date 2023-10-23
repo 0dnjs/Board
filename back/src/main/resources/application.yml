@@ -1,4 +1,14 @@
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+
+          provider:
+            kakao:
+
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://db1.c1efhs4margq.us-east-2.rds.amazonaws.com:3306/board

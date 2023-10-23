@@ -28,13 +28,14 @@ public class AuthController {
     private final AccountService accountService;
 
     @ArgsAop
-    @Valid // 유효성 검사
+    @ValidAop // 유효성 검사
     @PostMapping("/auth/signup")                             // email,password 요청하면 들어옴
-    public ResponseEntity<?> signup(@Valid @RequestBody SignupReqDto signupReqDto, BindingResult bindingResult) {
+    public ResponseEntity<?> signup( @RequestBody SignupReqDto signupReqDto) {
 
         return ResponseEntity.ok().body(authService.signup(signupReqDto));
     }
 
+    @ReturnAop
     @ArgsAop
     @PostMapping("/auth/signin")
     public ResponseEntity<?> signin(@RequestBody SigninReqDto signinReqDto) {

@@ -16,6 +16,7 @@ public class ArgsAop {
     private void pointCut() {}
 
         @Around("pointCut()")
+        // Around는 ProceedingJoinPoint를 첫번째 파라미터로 전달받는데 해당 인터페이스가 프록시대상 객체를 호출할 수 있는 proceed()메서드를 제공
         // ProceedingJoinPoint : 핵심기능을 호출하는 기능을 가지고 있음 (around  사용 시 필수!)
         public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
 

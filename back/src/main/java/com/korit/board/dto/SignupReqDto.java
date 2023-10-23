@@ -29,12 +29,19 @@ public class SignupReqDto {
     @NotBlank
     private String nickname;
 
+    private String oauth2Id;
+    private String profileImg;
+    private String provider;
+
     public User toUser(BCryptPasswordEncoder passwordEncoder) { // password 암호화 시켜줌
         return User.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password)) // 암호화되어있어서 encode안에 password감싸줘야함
                 .name(name)
                 .nickname(nickname)
+                .oauth2Id(oauth2Id)
+                .provider(provider)
+                .profileUrl(profileImg)
                 .build();
     }
 }
